@@ -8,11 +8,11 @@
 <div class="container p-3">
     <div class="row pt-4 mb-2">
         <div class="col-6">
-            <h2 class="text-primary">Category list</h2>
+            <h2 class="text-primary">Listă de categorii</h2>
         </div>
         <div class="col-6 d-flex align-items-center justify-content-end">
             <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
-              <i class="bi bi-plus-circle"></i>  Create new category
+              <i class="bi bi-plus-circle"></i>  Crează categorie
             </a>
         </div>
     </div>
@@ -22,10 +22,10 @@
         <thead>
             <tr>
                 <th>
-                    Category Name
+                    Numele categoriei
                 </th>
                 <th>
-                    Display Order
+                    Ordinea de afișare
                 </th>
                 <th>
 
@@ -44,8 +44,8 @@
                     </td>
                     <td>
                         <div class="w-75 btn-group" role="group">
-                           <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"> <i class="bi bi-pen"></i> Edit</a>
-                           <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id"> <i class="bi bi-trash-fill"></i> Delete</a>
+                           <a class="btn btn-primary" asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id"> <i class="bi bi-pen"></i> Editează</a>
+                           <a class="btn btn-danger" asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id"> <i class="bi bi-trash-fill"></i>Șterge</a>
                        </div>
                     </td>
                 </tr>

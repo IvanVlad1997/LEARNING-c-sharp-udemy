@@ -31,13 +31,13 @@ namespace BulkyBookWeb.Controllers
         {
             if (obj.Name == obj.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("CustomError", "The display order is not good");
+                ModelState.AddModelError("CustomError", "Ordinea de afișare nu este ok");
             }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
-                TempData["success"] = "Category created successfully";
+                TempData["success"] = "Categoria a fost editată cu succes";
                 return RedirectToAction("Index");
             }
 
@@ -72,13 +72,13 @@ namespace BulkyBookWeb.Controllers
         {
             if (obj.Name == obj.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("CustomError", "The display order is not good");
+                ModelState.AddModelError("CustomError", "Ordinea de afișare nu este ok");
             }
             if (ModelState.IsValid)
             {
                 _db.Categories.Update(obj);
                 _db.SaveChanges();
-                TempData["success"] = "Category updated successfully";
+                TempData["success"] = "Categoria a fost editată cu succes";
                 return RedirectToAction("Index");
             }
 
@@ -118,7 +118,7 @@ namespace BulkyBookWeb.Controllers
             }
             _db.Categories.Remove(obj);
             _db.SaveChanges();
-            TempData["success"] = "Category deleted successfully";
+            TempData["success"] = "Categoria a fost ștearsă cu succes";
             return RedirectToAction("Index");
 
 
