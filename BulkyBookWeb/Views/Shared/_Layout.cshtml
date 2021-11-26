@@ -25,19 +25,21 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">Acasă</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Confidențialitate</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Category" asp-action="Index">Categorii</a>
+                        </li>                   
+                    
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sitem de manageriere a conținutului</a>
+                            <div class="dropdown-menu">
+                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Categorii</a>
+                                 <a class="dropdown-item" asp-area="Admin" asp-controller="CoverType" asp-action="Index">Tipuri de categorii</a>                              
+                            </div>
                         </li>
 
                     </ul>
-                   @* <form class="d-flex">
+                    @* <form class="d-flex">
                         <input class="form-control me-sm-2" type="text" placeholder="Search" />
                         <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-                    </form>*@
+                        </form>*@
                 </div>
             </div>
         </nav>
