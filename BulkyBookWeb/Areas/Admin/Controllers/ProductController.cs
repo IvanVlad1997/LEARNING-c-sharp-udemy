@@ -20,8 +20,7 @@ namespace BulkyBookWeb.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Product> objProjectList = _unitOfWork.Product.GetAll();
-            return View(objProjectList);
+            return View();
         }
 
 
@@ -122,5 +121,15 @@ namespace BulkyBookWeb.Controllers
             TempData["success"] = "Tipul de copertă a fost ștears cu succes";
             return RedirectToAction("Index");
         }
+
+
+        #region API CALLS
+        [HttpGet]
+        public IActionResult GetAll()
+        {
+            var productList = _unitOfWork.Product.GetAll();
+            return Json(new {data=productList});
+        }
+        #endregion
     }
 }

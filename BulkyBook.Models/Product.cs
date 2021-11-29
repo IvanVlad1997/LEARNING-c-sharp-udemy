@@ -41,10 +41,10 @@ namespace BulkyBook.Models
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
-
+      
+        public int CoverTypeId { get; set; }
         [ForeignKey("CoverTypeId")]
         [ValidateNever]
-        public int CoverTypeId { get; set; }
         public CoverType CoverType { get; set; }
     }
 }
