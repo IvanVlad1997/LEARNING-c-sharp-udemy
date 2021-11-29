@@ -1,0 +1,117 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model BulkyBook.Models.ViewModels.ProductViewModel
+
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+    <div class="border p-3 mt-4 row">
+        <div class="row pb-2">
+            <h2 class="text-primary">@(Model.Product.Id!=0 ? "Modifică" : "Creează" ) Produsul</h2>
+            <hr />
+        </div>
+        <div class="mb-3">
+            <label asp-for="Product.Title">Titlu</label>
+            <input asp-for="Product.Title" class="form-control" />
+            <span asp-validation-for="Product.Title" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Product.Description">Descriere</label>
+            <textarea asp-for="Product.Description" rows=3 class="form-control"></textarea>
+            <span asp-validation-for="Product.Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.ISBN">ISBN</label>
+            <input asp-for="Product.ISBN" class="form-control" />
+            <span asp-validation-for="Product.ISBN" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.Author">Autor</label>
+            <input asp-for="Product.Author" class="form-control" />
+            <span asp-validation-for="Product.Author" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.ListPrice">Listă de prețuri</label>
+            <input asp-for="Product.ListPrice" class="form-control" />
+            <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.Price">Pprețuri</label>
+            <input asp-for="Product.Price" class="form-control" />
+            <span asp-validation-for="Product.Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.Price50">Prețul pentru 50 de unități</label>
+            <input asp-for="Product.Price50" class="form-control" />
+            <span asp-validation-for="Product.Price50" class="text-danger"></span>
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.Price100">Prețul pentru 100 de unități</label>
+            <input asp-for="Product.Price100" class="form-control" />
+            <span asp-validation-for="Product.Price100" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Product.ImageUrl">Prețul pentru 100 de unități</label>
+            <input type="file" asp-for="Product.ImageUrl" name="file" class="form-control" id="uploadBox" />
+        </div>
+        <div class="mb-3 col-6">
+            <label asp-for="Product.CategoryId">Categorie</label>
+            <select asp-for="Product.CategoryId" asp-items="@Model.CategoryList" class="form-select">
+                <option disabled selected>--Selectează categoria--</option>
+            </select>
+            <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+        </div>
+            <div class="mb-3 col-6">
+            <label asp-for="Product.CoverTypeId">Tip de copertă</label>
+            <select asp-for="Product.CoverTypeId" asp-items="@Model.CoverTypeList" class="form-select">
+                <option disabled selected>--Selectează coperta--</option>
+            </select>
+            <span asp-validation-for="Product.CoverTypeId" class="text-danger"></span>
+        </div>
+   @*     <div class="mb-3 col-6">
+            <label asp-for="Product.CoverTypeId">Tipul de copertă</label>
+            <select asp-for="Product.CoverTypeId" asp-items="@Model.CoverTypeList" class="form-select">
+                <option disabled selected>--Selectează tipul de copertă--</option>
+            </select>
+            <span asp-validation-for="Product.CoverTypeId" class="text-danger"></span>
+        </div>*@
+        <div class="col-12">
+            @if (Model.Product.Id != 0)
+            {
+                <button type="submit" class="btn btn-primary" style="width:150px">Editează</button>
+
+            }
+            else
+            {
+                <button type="submit" onclick="return ValidateInput()" class="btn btn-primary" style="width:150px">Creează</button>
+
+            }
+            <button type="submit" class="btn btn-primary" style="width:150px">Editează</button>
+            <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">
+                Înapoi la listă
+            </a>
+        </div>
+    </div>
+
+
+</form>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial"></partial>
+    <script>
+        function ValidateInput() {
+            if(document.getElementById("uploadBox").value=="") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'O fotografie trebuie încărcată'
+                })
+                return false;
+            }
+            return true;
+        }
+    </script>
+    }
+}

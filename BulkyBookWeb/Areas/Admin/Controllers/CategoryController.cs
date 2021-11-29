@@ -113,7 +113,7 @@ namespace BulkyBookWeb.Controllers
         public IActionResult DeletePOST(int? id)
         {
             var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            if (obj == null) 
+            if (obj == null)
             {
                 return NotFound();
             }
