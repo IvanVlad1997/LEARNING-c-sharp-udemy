@@ -19,29 +19,41 @@ namespace BulkyBook.Models
         public string ISBN { get; set; }
         [Required]
         public string Author { get; set; }
+
         [Required]
         [Range(1,10000)]
+        [Display(Name = "Prețul de listare")]
+
         public double ListPrice { get; set; }
+
         [Required]
         [Range(1, 10000)]
+        [Display(Name = "Prețul pentru 1-50")]
         public double Price { get; set; }
 
         [Required]
         [Range(1, 10000)]
+        [Display(Name = "Prețul pentru 50-100")]
+
         public double Price50 { get; set; }
 
         [Required]
         [Range(1, 10000)]
+        [Display(Name = "Prețul pentru 100 +")]
         public double Price100 { get; set; }
 
         [ValidateNever]
         public string ImageUrl { get; set; }
 
+        [Required]
+        [Display(Name = "Categorie")]
         public int CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         [ValidateNever]
         public Category Category { get; set; }
       
+        [Required]
+        [Display(Name ="Tip de copertă")]
         public int CoverTypeId { get; set; }
         [ForeignKey("CoverTypeId")]
         [ValidateNever]

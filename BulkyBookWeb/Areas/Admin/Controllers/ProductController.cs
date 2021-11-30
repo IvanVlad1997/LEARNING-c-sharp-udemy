@@ -49,12 +49,11 @@ namespace BulkyBookWeb.Controllers
             }
             else
             {
+                productViewModel.Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == id);
                 //update product
+                return View(productViewModel);
+
             }
-
-
-
-            return View(productViewModel);
         }
 
         //Post
@@ -70,7 +69,16 @@ namespace BulkyBookWeb.Controllers
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var uploads = Path.Combine(wwwRootPath, @"images\products");
-                    var extension = Path.GetExtension(file.FileName);
+                    var extension = Path.GetExtension(file.FileName); 
+
+                    if (obj.Product.ImageUrl != null)
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, obj.Product.ImageUrl.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
 
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
@@ -78,7 +86,15 @@ namespace BulkyBookWeb.Controllers
                     }
                     obj.Product.ImageUrl = @"\images\products\" + fileName + extension;
                 }
-                _unitOfWork.Product.Add(obj.Product);
+
+                if (obj.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(obj.Product);
+                } else
+                {
+                    _unitOfWork.Product.Update(obj.Product);
+                }
+
                 _unitOfWork.Save();
                 TempData["success"] = "Produsul a fost creat cu succes cu succes";
                 return RedirectToAction("Index");
@@ -127,7 +143,7 @@ namespace BulkyBookWeb.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            var productList = _unitOfWork.Product.GetAll();
+            var productList = _unitOfWork.Product.GetAll(includeProperties:"Category,CoverType");
             return Json(new {data=productList});
         }
         #endregion
